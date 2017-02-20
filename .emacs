@@ -1,5 +1,6 @@
 (set-frame-parameter nil 'fullscreen 'fullboth)
 (setq inhibit-splash-screen t)
+(package-initialize)
 (require 'bookmark+)
 (bookmark-bmenu-list)
 (switch-to-buffer "*Bookmark List*")
@@ -28,7 +29,7 @@
 
 ;; ;; load path
 ;; (add-to-list 'load-path "~/.emacs.d/elpa/ox-reveal-20160719.28/")
-(package-initialize)
+
 
 (require 'cl-lib)
 (require 'dired+)
@@ -192,6 +193,8 @@ A prefix arg forces clock in of the default task."
 (ac-config-default)
 
 (setq ess-use-auto-complete t)
+;;;;; If you want all help buffers to go into one frame do
+(setq ess-help-own-frame 'one)
 
 ;; Taken from Section 4.5 of the ESS manual:
 (eval-after-load "comint" 
@@ -645,7 +648,12 @@ as the default task."
 (require 'ess-R-object-popup)
 (define-key ess-mode-map "\C-c\C-g" 'ess-R-object-popup)
 
+;; open R data frames in spreadsheet application
 (require 'ess-view)
+
+;; ess R data view
+(define-key ess-mode-map (kbd "C-c v") 'ess-R-dv-ctable)
+(define-key ess-mode-map (kbd "C-c w") 'ess-R-dv-pprint)
 
 ;; uniquify
 (require 'uniquify)
